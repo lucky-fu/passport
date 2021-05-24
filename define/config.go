@@ -7,6 +7,10 @@
 // Date: 2021/5/19 下午11:38
 package define
 
+import (
+	"lib/src/github.com/sirupsen/logrus"
+)
+
 // Config 用到的配置
 type Config struct {
 	Base  Base  `json:"base"`
@@ -47,4 +51,13 @@ type ConfigRedis struct {
 	ConnectTimeout float32 `mapstructure:"connect_timeout,omitempty"`
 	WriteTimeout   float32 `mapstructure:"write_timeout,omitempty"`
 	ReadTimeout    float32 `mapstructure:"read_timeout,omitempty"`
+}
+
+// Log ...
+type Log struct {
+	Business  *logrus.Logger `yml:"system"`
+	API       *logrus.Logger `yml:"api"`
+	Exception *logrus.Logger `yml:"exception"`
+	SQL       *logrus.Logger `yml:"sql"`
+	Redis     *logrus.Logger `yml:"redis"`
 }

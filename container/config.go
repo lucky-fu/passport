@@ -7,8 +7,8 @@ import (
 	"os"
 	"sync"
 
-	"github.com/passport/define"
 	"github.com/mitchellh/mapstructure"
+	"github.com/passport/define"
 )
 
 var (
@@ -37,7 +37,7 @@ func readFile(base, path, suffix string) ([]byte, error) {
 		return nil, err
 	}
 
-	defer func(){
+	defer func() {
 		if file != nil {
 			_ = file.Close()
 		}
@@ -50,14 +50,14 @@ func readFile(base, path, suffix string) ([]byte, error) {
 func get(base, path string) (interface{}, error) {
 	var (
 		exists bool
-		err error
-		value interface{}
+		err    error
+		value  interface{}
 	)
 
 	value, exists = configMap.Load(path)
 
 	if !exists {
-		value, err = readFile(base, path, "");
+		value, err = readFile(base, path, "")
 		if err != nil {
 			return nil, err
 		}
@@ -69,10 +69,10 @@ func get(base, path string) (interface{}, error) {
 }
 
 // GetRedisConfigList 获取redis的配置列表
-func GetRedisConfig(path string) (*define.ConfigRedis, error){
-	var redisConfig  *define.ConfigRedis
+func GetRedisConfig(path string) (*define.ConfigRedis, error) {
+	var redisConfig *define.ConfigRedis
 
-	rawConfig,err := get("", path)
+	rawConfig, err := get("", path)
 
 	if err != nil {
 		return nil, err
@@ -81,4 +81,32 @@ func GetRedisConfig(path string) (*define.ConfigRedis, error){
 	err = mapstructure.Decode(rawConfig, &redisConfig)
 
 	return redisConfig, nil
+}
+
+// GetRootPath 获取根目录
+func GetRootPath() (rootPath string, err error) {
+	rootPath, err = os.Getwd()
+	return
+}
+
+// GetLogConfig 获取日志配置
+func GetLogConfig(path string) (*define.Log, error) {
+	var log define.Log
+
+	err := getConfig(path, &log)
+
+	return &log, err
+}
+
+// getConfig ...
+func getConfig(path string, decodeConf interface{}) error {
+	rawConfig, err := get("", path)
+
+	if err != nil {
+		return err
+	}
+
+	err = mapstructure.Decode(rawConfig, decodeConf)
+
+	return err
 }
