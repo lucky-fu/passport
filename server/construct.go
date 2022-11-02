@@ -11,4 +11,5 @@ func initContainer() {
 	middler.InitVariables()
 	middler.InitConfig()
 	middler.InitRedis()
+	middler.InitMysql()
 }

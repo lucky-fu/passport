@@ -9,3 +9,22 @@ redis:
     connect: 10
     read: 10
     write: 10
+mysql:
+  master:
+    host: 43.143.238.182
+    port: 3306
+    name: passport
+    user: root
+    password: ab123456
+    show: true
+    level: 0
+    max: 300
+  slave:
+    host: 43.143.238.182
+    port: 3306
+    name: passport
+    user: root
+    password: ab123456
+    show: true
+    level: 0
+    max: 300

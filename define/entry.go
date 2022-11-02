@@ -2,10 +2,10 @@ package define
 
 // Config
 type Config struct {
-	Base  Base
-	Redis Redis
-	Mysql Mysql
-	Log   Log
+	Base  Base        `yml:"base"`
+	Redis Redis       `yml:"redis"`
+	Mysql MysqlClient `yml:"mysql"`
+	Log   Log         `yml:"log"`
 }
 
 // Redis
@@ -17,8 +17,13 @@ type Redis struct {
 	Timeout  RedisTimeout `yml:"timeout"`
 }
 
-// Mysql
-type Mysql struct {
+// MysqlClient
+type MysqlClient struct {
+	Master MysqlConfig `yml:"master"`
+	Slave  MysqlConfig `yml:"slave"`
+}
+
+type MysqlConfig struct {
 	Host     string `yml:"host"`
 	Port     int    `yml:"port"`
 	Name     string `yml:"name"`
