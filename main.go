@@ -1,6 +1,9 @@
-// main ...
 package main
 
-func main()  {
-	
+import (
+	"github.com/passport/server"
+)
+
+func main() {
+	server.Run()
 }
