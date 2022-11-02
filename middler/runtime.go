@@ -11,5 +11,5 @@ func InitRuntime() {
 	cpuNum := runtime.NumCPU()
 	process := runtime.GOMAXPROCS(cpuNum)
 
-	fmt.Printf("cpu的数目为：%d, 设置的调度器数目为：%d", cpuNum, process)
+	fmt.Printf("cpu的数目为：%d, 设置的调度器数目为：%d\n", cpuNum, process)
 }

@@ -8,4 +8,7 @@ func construct() {
 
 func initContainer() {
 	middler.InitRuntime()
+	middler.InitVariables()
+	middler.InitConfig()
+	middler.InitRedis()
 }

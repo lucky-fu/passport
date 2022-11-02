@@ -1,0 +1,11 @@
+base:
+  env: test
+redis:
+  host: 43.143.238.182
+  port: 6379
+  db: 1
+  password: "ab123456"
+  timeout:
+    connect: 10
+    read: 10
+    write: 10

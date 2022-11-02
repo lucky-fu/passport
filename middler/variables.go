@@ -3,6 +3,8 @@ package middler
 import (
 	"fmt"
 	"os"
+
+	_ "github.com/joho/godotenv/autoload"
 )
 
 var (
@@ -29,4 +31,6 @@ func InitVariables() {
 	if Port, ok = os.LookupEnv("PORT"); !ok {
 		panic("get port failed")
 	}
+
+	fmt.Printf("初始化变量成功\n")
 }
